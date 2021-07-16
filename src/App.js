@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import HomeCard from "./components/HomeCard";
+import styled, { ThemeProvider } from "styled-components";
+import WebTheme from "./components/WebTheme";
+import { useState } from "react";
+
+const Application = styled.div`
+  background: ${({ theme }) => theme.background};
+`;
 
 function App() {
+  const [theme, setTheme] = useState(WebTheme["light"]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Application className="App">
+        <HomeCard theme={theme} setTheme={setTheme} WebTheme={WebTheme} />
+      </Application>
+    </ThemeProvider>
   );
 }
 
